@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { foods, type FoodTag } from "../food";
-import { Tag } from "@/components/tag";
 import { useSearchParams } from "next/navigation";
 import { SearchBar } from "./search-bar";
+import { Food } from "./food";
 
 export default function Admin() {
   const searchParams = useSearchParams();
@@ -18,23 +18,6 @@ export default function Admin() {
       food.name.toLowerCase().includes(search.toLowerCase()) &&
       (!filteredTag || food.tags.includes(filteredTag as FoodTag))
   );
-
-  function renderFoods() {
-    return filteredFoods.map((food) => (
-      <li key={food.id}>
-        <h2 className="text-lg font-bold pt-4">{food.name}</h2>
-        <p>{food.description}</p>
-        <img src={food.image} alt={food.name} className="w-80" />
-        <p>
-          {food.tags.map((tag) => (
-            <Tag key={tag}>
-              <span className="text-blue-500">{tag}</span>
-            </Tag>
-          ))}
-        </p>
-      </li>
-    ));
-  }
 
   return (
     <>
@@ -52,7 +35,11 @@ export default function Admin() {
         <p>{filteredFoods.length} results found.</p>
       )}
 
-      <ul>{renderFoods()}</ul>
+      <div className="flex flex-wrap">
+        {filteredFoods.map((food) => (
+          <Food key={food.id} food={food} />
+        ))}
+      </div>
     </>
   );
 }
