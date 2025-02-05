@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { type FoodTag, type Food as FoodType } from "../food";
 import { useSearchParams } from "next/navigation";
 import { SearchBar } from "./search-bar";
-import { Food } from "./food";
+import { FoodItem } from "./food-item";
 import { Spinner } from "@/components/spinner";
 
 export default function Admin() {
@@ -59,7 +59,7 @@ export default function Admin() {
 
       <div className="flex flex-wrap">
         {filteredFoods.map((food) => (
-          <Food key={food.id} food={food} />
+          <FoodItem key={food.id} food={food} />
         ))}
       </div>
     </>
