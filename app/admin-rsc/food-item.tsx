@@ -5,7 +5,7 @@ type Props = {
   food: Food;
 };
 
-export function Food({ food }: Props) {
+export function FoodItem({ food }: Props) {
   return (
     <div className="p-4 border border-gray-200 rounded-lg shadow-md max-w-80 mr-4 mb-4">
       <h2 className="text-lg font-bold pt-4">{food.name}</h2>
