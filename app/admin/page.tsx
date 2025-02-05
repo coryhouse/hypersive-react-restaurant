@@ -12,6 +12,10 @@ export default function Admin() {
   const [foods, setFoods] = useState<FoodType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  function deleteFood(id: number) {
+    setFoods((foods) => foods.filter((food) => food.id !== id));
+  }
+
   // Run some code after render
   useEffect(() => {
     async function getFoods() {
@@ -59,7 +63,7 @@ export default function Admin() {
 
       <div className="flex flex-wrap">
         {filteredFoods.map((food) => (
-          <Food key={food.id} food={food} />
+          <Food key={food.id} food={food} deleteFood={deleteFood} />
         ))}
       </div>
     </>
