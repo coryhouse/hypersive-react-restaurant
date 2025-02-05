@@ -5,7 +5,7 @@ type Props = {
 export default function Header(props: Props) {
   return (
     <>
-      <h1>Header</h1>
+      <h1>Admin Header</h1>
       <main>{props.children}</main>
     </>
   );
