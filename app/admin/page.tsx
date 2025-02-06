@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { type FoodTag, type Food as FoodType } from "../food";
+import { foodSchema, type FoodTag, type Food as FoodType } from "../food";
 import { useSearchParams } from "next/navigation";
 import { SearchBar } from "./search-bar";
 import { Food } from "./food";
@@ -25,7 +25,8 @@ export default function Admin() {
           throw new Error("Failed to fetch foods");
         }
         const data = await resp.json();
-        setFoods(data);
+        const parsedFoods = foodSchema.array().parse(data); // Validate data
+        setFoods(parsedFoods);
       } finally {
         setIsLoading(false);
       }
